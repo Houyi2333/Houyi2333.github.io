@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>你不定积分没加C的博客</title>
   
-  <subtitle>除了不定积分，还有微分方程通解需要+C</subtitle>
+  
   <link href="https://houyi2333.github.io/atom.xml" rel="self"/>
   
   <link href="https://houyi2333.github.io/"/>
@@ -10,7 +10,7 @@
   <id>https://houyi2333.github.io/</id>
   
   <author>
-    <name>后羿2333</name>
+    <name>你不定积分没加C</name>
     
   </author>
   

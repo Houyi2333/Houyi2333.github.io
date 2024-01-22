@@ -15,7 +15,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"houyi2333.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":210,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"houyi2333.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":210,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="website">
@@ -142,10 +142,6 @@
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -182,10 +178,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-01-21 17:16:23 / 修改时间：21:05:37" itemprop="dateCreated datePublished" datetime="2024-01-21T17:16:23+08:00">2024-01-21</time>
+              <time title="创建时间：2024-01-21 17:16:23" itemprop="dateCreated datePublished" datetime="2024-01-21T17:16:23+08:00">2024-01-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-22 11:33:57" itemprop="dateModified" datetime="2024-01-22T11:33:57+08:00">2024-01-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -227,7 +229,7 @@
 <h4 id="空类型"><a href="#空类型" class="headerlink" title="空类型"></a>空类型</h4><p>未定义和空都表示空，但 <code>null</code> 表示这个元素存在，但是是空的； <code>undefined</code> 表示这个元素干脆就不存在。且 <code>undefined</code> 要比 <code>null</code> 常见的多</p>
 <p>这两个类型的相同点是，他们都是只有一个值的数据类型， <code>undefined</code> 的值只有 <code>undefined</code> ， <code>null</code> 的值只有 <code>null</code></p>
 <p>我们先看一张比较经典的图片，该图来自 stackoverflow 的回答</p>
-<p><img src="../images/从JavaScript到TypeScript/T9M2J.png" alt></p>
+<p><img src="/2024/01/21/17-16-23/T9M2J.png" alt="T9M2J"></p>
 <ul>
 <li>非零值就像一个装有卫生纸卷的支架，并且管子上仍然有纸巾。</li>
 <li>零值就像一个带有空卫生纸管的支架。</li>
@@ -360,7 +362,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-22 10:29:05" itemprop="dateModified" datetime="2024-01-22T10:29:05+08:00">2024-01-22</time>
+                <time title="修改时间：2024-01-22 11:34:24" itemprop="dateModified" datetime="2024-01-22T11:34:24+08:00">2024-01-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -397,7 +399,7 @@
     -x+2y=3\\
 \end{array} \right.的解</script><p>我们先抛开代数消元不谈，从几何上我们可以这么理解这个问题</p>
 <script type="math/tex; mode=display">
-求直线2x-y=0和直线-x+2y=3的交点的坐标</script><p><img src="../images/线性代数_1_什么是线性、什么是线性代数/image-20240109150913411.png" alt></p>
+求直线2x-y=0和直线-x+2y=3的交点的坐标</script><p><img src="/2024/01/09/14-54-42/image-20240109150913411.png" alt="image-20240109150913411"></p>
 <p>显然交点的坐标为$(1,2)$，所以方程组的解为$x=1, y=2$</p>
 <p>那么我们还知道，这个方程组叫做线性方程组，为什么呢？因为这个方程组的所有方程都是线性方程。什么是线性方程呢？我们把形如$a_1x_1+a_2x_2+\cdots+a_nx_n=b$的方程叫做线性方程，因为他表示了n维空间内的一个……，我也不知道，我只知道二元一次方程就表示了二维平面内的一条直线，三元一次方程就表示了三维空间内的一个平面。反正我无法想象三维以上的空间。</p>
 <p>线性方程组是由一个或多个包含相同变量的未知数的线性方程组成的，其一般形式为：</p>
@@ -477,7 +479,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-09 16:27:10" itemprop="dateModified" datetime="2024-01-09T16:27:10+08:00">2024-01-09</time>
+                <time title="修改时间：2024-01-22 11:33:08" itemprop="dateModified" datetime="2024-01-22T11:33:08+08:00">2024-01-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -508,10 +510,10 @@
 <p>首先恭喜同学成功的选上了赖晓晨老师的计算机组织与结构这门课</p>
 <p>赖晓晨非常喜欢华为这个企业，上课会穿插极其多的华为的内容，期末考试也会涉及一些华为的内容，尤其是华为的鲲鹏处理器</p>
 <p>赖晓晨老师上课的流程是，先扫码进雨课堂，课中会时不时在雨课堂发送测试题，并且每道题只有 30-60s 的时间来作答，如果翘课是很难通过别人提醒来及时作答的。同时，课上还会提问坐在后排的学生，如果没答上来，还会要求该学生坐到第一排。后来你会发现，教室里只有前5排有学生，后面一个都没有。同时，上课抢答的同学会记名，加平时分。同时，还会有翻转课堂，也就是学生讲课，自愿报名，报名的加平时分。同时，成绩构成也很复杂，各种形式五花八门，给大家看一下成绩构成</p>
-<p><img src="../images/不要选赖晓晨，会变得不幸/image-20240107170838300.png" alt></p>
+<p><img src="/2024/01/07/17-04-19/image-20240107170838300.png" alt="image-20240107170838300"></p>
 <p>课后作业包括两部分，一部分是课本课后习题，会挑一些做，这个没什么问题，量也不多，与其他老师都一样。但是其他老师的平时成绩也就是这些课后习题了，而赖晓晨老师为了让学生全面发展，课后作业又新增了一项——代码作业</p>
 <p>代码作业我这一届是有5个，如下图：</p>
-<p><img src="../images/不要选赖晓晨，会变得不幸/image-20240107170921333.png" alt></p>
+<p><img src="/2024/01/07/17-04-19/image-20240107170921333.png" alt="image-20240107170921333"></p>
 <p>这个代码作业是线上提交C语言代码，但是这个代码的难度。。。反正我写不出来，并且ChatGPT也写不出来。作业的1003，我的代码通过了课本所有的例题，但是就是通不过他给的样例，最后喜提75分</p>
 <p>同时，这个作业的代码会进行查重，如果你跟另一个同学的代码相似度过高，两个人本次作业会被直接判为0分。</p>
 <p>同时，赖晓晨老师还设置了课内实验和微认证这两个部分</p>
@@ -519,10 +521,10 @@
 <p>这个实验对于没有服务器租用经验和Linux系统使用经验的同学来说，我个人认为还是有挑战性的，open Euler是一个没有GUI的操作系统，仅能使用shell命令和vim编辑器进行操作</p>
 <p>接下来讲微认证的5分</p>
 <p>这个微认证的内容是华为鲲鹏处理器知识，有很多的课可以选，只要完成必做的一个+任选一个，共完成两个，就可以拿到这五分</p>
-<p><img src="../images/不要选赖晓晨，会变得不幸/image-20240107171104951.png" alt></p>
+<p><img src="/2024/01/07/17-04-19/image-20240107171104951.png" alt="image-20240107171104951"></p>
 <p>其中必做的是“揭秘鲲鹏处理器”，剩下一个建议选择“鲲鹏软件迁移实践”，因为这个在CSDN上有题库可以抄）</p>
 <p>这个题目难度，我就呃呃了，真的很难考，给大家看看我的分数，70分及以上算通过本次考试</p>
-<p><img src="../images/不要选赖晓晨，会变得不幸/image-20240107171643108.png" alt>                     <img src="../images/不要选赖晓晨，会变得不幸/image-20240107171650661.png" alt></p>
+<p><img src="/2024/01/07/17-04-19/image-20240107171643108.png" alt="image-20240107171643108">                     <img src="/2024/01/07/17-04-19/image-20240107171650661.png" alt="image-20240107171650661"></p>
 <p>这个微认证，每个课都是需要花费一张代金券的，代金券一个周能且仅能领一张，且限量500张，如果被抢没了，那这个周你想做也做不了了</p>
 <p>当然，上述还没有考虑到大作业，当然大作业是选做的，也不知道做大作业是更容易及格还是更不容易及格</p>
 <p>大作业的要求是，根据那<strong>122页</strong>PDF给出的实验，自己创新性的提出新的实验，实验内容要求与鲲鹏处理器技术的内容高度相关，实验文档的结构也要与实验手册一致，包括实验目的、实验设备、实验原理、实验任务操作指导以及思考题。由于我们并没有深入学习过鲲鹏920处理器，也不了解ARMV8架构和Linux操作系统，也不了解处理器内部结构，个人认为想要设计这个实验还是很难的，虽然我当年选择了做大作业，自己设计了一个实验）</p>
@@ -655,7 +657,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-19 10:25:21" itemprop="dateModified" datetime="2024-01-19T10:25:21+08:00">2024-01-19</time>
+                <time title="修改时间：2024-01-22 11:30:23" itemprop="dateModified" datetime="2024-01-22T11:30:23+08:00">2024-01-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -678,12 +680,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>打开VSCode的设置，搜索Format，将搜索到的选项设置成如下格式，这样就打开了自动格式化</p>
-<p><img src="../images/VSCode自动格式化-c-and-cpp文件并开启自动保存/3cfc97729ba949edbac614d0d90e00b1.png" alt><br>在设置中搜索Auto Save，将Files: Auto Save改为onFocusChange，这样就开启了自动保存</p>
-<p><img src="../images/VSCode自动格式化-c-and-cpp文件并开启自动保存/36e4dcbc98ac4282a2359ca9da791d36.png" alt><br>还有一个让强迫症患者很头大的问题：大括号是换行还是不换行？</p>
-<p><img src="../images/VSCode自动格式化-c-and-cpp文件并开启自动保存/00224dc01a8e4a72a668a8e10456ec2c.png" alt><br>在设置中搜索C_Cpp.Clang_format_style，填入{BasedOnStyle: Chromium, IndentWidth: 4}</p>
-<p><img src="../images/VSCode自动格式化-c-and-cpp文件并开启自动保存/f57336ae3841440183321d629da7b7d9.png" alt><br>这样大括号就会自动换行</p>
-<p><img src="../images/VSCode自动格式化-c-and-cpp文件并开启自动保存/899708edb6dd4be0b39371828a9f8ec2.png" alt></p>
+          <p>打开 VSCode 的设置，搜索 Format ，将搜索到的选项设置成如下格式，这样就打开了自动格式化</p>
+<p><img src="/2023/10/06/13-11-21/3cfc97729ba949edbac614d0d90e00b1.png" alt="3cfc97729ba949edbac614d0d90e00b1"><br>在设置中搜索 Auto Save ，将 <code>Files: Auto Save</code> 改为 <code>onFocusChange</code>，这样就开启了自动保存</p>
+<p><img src="/2023/10/06/13-11-21/36e4dcbc98ac4282a2359ca9da791d36.png" alt="36e4dcbc98ac4282a2359ca9da791d36"><br>还有一个让强迫症患者很头大的问题：大括号是换行还是不换行？</p>
+<p><img src="/2023/10/06/13-11-21/00224dc01a8e4a72a668a8e10456ec2c.png" alt="00224dc01a8e4a72a668a8e10456ec2c"><br>在设置中搜索 C_Cpp.Clang_format_style ，填入 <code>&#123;BasedOnStyle: Chromium, IndentWidth: 4&#125;</code> </p>
+<p><img src="/2023/10/06/13-11-21/f57336ae3841440183321d629da7b7d9.png" alt="f57336ae3841440183321d629da7b7d9"><br>这样大括号就会自动换行</p>
+<p><img src="/2023/10/06/13-11-21/899708edb6dd4be0b39371828a9f8ec2.png" alt="899708edb6dd4be0b39371828a9f8ec2"></p>
 
       
     </div>
@@ -858,7 +860,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-19 10:26:37" itemprop="dateModified" datetime="2024-01-19T10:26:37+08:00">2024-01-19</time>
+                <time title="修改时间：2024-01-22 11:28:37" itemprop="dateModified" datetime="2024-01-22T11:28:37+08:00">2024-01-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -886,24 +888,24 @@
 <p>代码编辑器事实上我们可以看成是一个记事本（没错，就是你按下 Win+R 输入 notepad 回车之后的那个记事本），其最基本的功能是文档编辑。不过之所以将其称为是代码编辑器，是因为它虽然继承自一般的文档编辑器，又具备了一些一般的文档编辑器所不具备的功能。具体来说，例如自动语法高亮，自动补全，甚至是自动代码重构等等。<br>集成开发环境（IDE）是一种用于构建应用程序的软件，可将常用的开发人员工具合并到单个图形用户界面（GUI）中。具体来说，我们只需要简单的点击按钮，可能就可以完成程序的编译、链接、运行、调试等等工作。而这些工作在最初都是需要人手工在命令行中完成的。我们在《程序设计基础与C程序设计》课程中最初使用的 Dev-C++ 便是一个集成开发环境。<br>我们今天要介绍的 VSCode 是一款轻量级的代码编辑器。如果没有各种扩展插件的支持的话，可能我们只能把它称作是大号的记事本，而正是因为社区中各种各样的扩展，VSCode 才得以展现其强大。</p>
 <h2 id="安装VSCode"><a href="#安装VSCode" class="headerlink" title="安装VSCode"></a>安装VSCode</h2><p>让我们打开 VSCode 官网：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Visual Studio Code - Code Editing. Redefined</a></p>
 <p>点击红框里的 <code>Download for Windows</code>，之后浏览器就会自动下载</p>
-<p><img src="../images/VSCode-c-and-cpp/1.png" alt></p>
-<p><img src="../images/VSCode-c-and-cpp/2.png" alt></p>
-<p><img src="../images/VSCode-c-and-cpp/3.png" alt>选择我同意此协议</p>
-<p><img src="../images/VSCode-c-and-cpp/4.png" alt>五个复选框全部都打勾</p>
-<p><img src="../images/VSCode-c-and-cpp/5.png" alt>点击安装</p>
+<p><img src="/2023/09/21/23-05-53/1.png" alt="1"></p>
+<p><img src="/2023/09/21/23-05-53/2.png" alt="2"></p>
+<p><img src="/2023/09/21/23-05-53/3.png" alt="3">选择我同意此协议</p>
+<p><img src="/2023/09/21/23-05-53/4.png" alt="4">五个复选框全部都打勾</p>
+<p><img src="/2023/09/21/23-05-53/5.png" alt="5">点击安装</p>
 <p>这样我们就能成功打开 VSCode</p>
-<p><img src="../images/VSCode-c-and-cpp/6.png" alt></p>
+<p><img src="/2023/09/21/23-05-53/6.png" alt="6"></p>
 <h2 id="汉化VSCode"><a href="#汉化VSCode" class="headerlink" title="汉化VSCode"></a>汉化VSCode</h2><p>我们可以通过安装中文插件将其汉化</p>
-<p><img src="../images/VSCode-c-and-cpp/7.png" alt></p>
+<p><img src="/2023/09/21/23-05-53/7.png" alt="7"></p>
 <p>重启后我们就得到了中文 VSCode</p>
-<p><img src="../images/VSCode-c-and-cpp/8.png" alt></p>
+<p><img src="/2023/09/21/23-05-53/8.png" alt="8"></p>
 <h2 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h2><p>我们可以先打开终端，尝试输入：<code>g++ --version</code></p>
 <p>如果你的终端返回了  g++ 的版本信息，恭喜，您 C++ 编译器的环境变量配置正确，可以跳过这一章</p>
 <p>如果你的终端返回了：<code>&#39;g++&#39; 不是内部或外部命令，也不是可运行的程序或批处理文件。</code>那么则说明你的终端不知道 <code>g++</code> 是什么命令，接下来需要根据我的教程添加环境变量</p>
 <p>什么是环境变量？</p>
 <p>当你的 Shell 在执行命令时，会尝试在<strong>一系列路径</strong>下搜索同名的可执行文件。这一系列路径我们就称作是环境变量。</p>
 <p>Windows 用户可以在终端中输入 path 来查看当前环境变量（由于我进行过一系列配置，所以其输出结果可能与你的不同）：</p>
-<p><img src="../images/vscode-c-and-cpp/image-20240119095335965.png" alt></p>
+<p><img src="/2023/09/21/23-05-53/image-20240119095335965.png" alt="image-20240119095335965"></p>
 <p>没错，就是这一系列文件夹。回忆我们刚才执行 <code>g++ --version</code> 命令的时候，我们的终端会在这一系列文件夹下为我们寻找叫做 <code>g++</code> 的可执行文件。如果找到了名为 <code>g++</code> 的可执行文件，我们的终端就会将参数传入，将其执行；而如果我们的终端没有找到，那么就会向我们报告“未知命令”。</p>
 <p>我们刚刚已经理解了环境变量的运行逻辑，接下来我们讲解如何进行环境变量的配置。</p>
 <p>对于 Windows 用户，请按下 Windows + S 打开搜索框，在其中输入 <code>path</code>，然后选择”环境变量”，然后选择“系统变量”中的 Path 字段，双击打开后即可配置。</p>
@@ -914,19 +916,19 @@
 <p>我们下载官方的安装工具（<a href="[MinGW - Minimalist GNU for Windows download | SourceForge.net](https://sourceforge.net/projects/mingw/">链接</a>)），下载完成后打开，无需进行更改，一路点击下一步</p>
 <p>安装完成之后会自动打开MinGW Installation Manager</p>
 <p>我们点击左侧栏中的 Basic Setup ，右侧勾选 mingw32-base 和 mingw32-gcc-g++ 这两个包</p>
-<p><img src="../images/vscode-c-and-cpp/image-20240119101136811.png" alt></p>
+<p><img src="/2023/09/21/23-05-53/image-20240119101136811.png" alt="image-20240119101136811"></p>
 <p>之后点击菜单栏中 Installation 的 Apply Changes</p>
-<p><img src="../images/vscode-c-and-cpp/image-20240119101243586.png" alt></p>
+<p><img src="/2023/09/21/23-05-53/image-20240119101243586.png" alt="image-20240119101243586"></p>
 <p>等待片刻，MinGW即可安装在你的电脑中</p>
+<p><img src="/2023/09/21/23-05-53/cb23ba556a7b40a59cd40145b2ac89d4.png" alt="cb23ba556a7b40a59cd40145b2ac89d4"></p>
 <p>然后，我们需要进行环境变量配置。进入 <code>Mingw64 的安装路径/mingw64/bin/</code>，我们可以看到 <code>gcc</code>，<code>g++</code> 这些我们熟悉的可执行文件。<strong>然后我们需要做的就是将这个文件夹添加至环境变量中。</strong></p>
-<p><img src="../images/VSCode-c-and-cpp/cb23ba556a7b40a59cd40145b2ac89d4-17042518710582.png" alt></p>
 <p>然后我们就可以打开终端，输入 <code>g++ --version</code> 验证环境变量是否配置成功。（请注意，在环境变量配置后需要重启终端才能生效）</p>
 <h2 id="插件安装与设置"><a href="#插件安装与设置" class="headerlink" title="插件安装与设置"></a>插件安装与设置</h2><p>这时候我们再装两个插件，一个叫 C/C++，一个叫 Code Runner</p>
-<p><img src="../images/VSCode-c-and-cpp/6cd952d979ef4a7b994518d2c8c27c56.png" alt>                                       <img src="../images/VSCode-c-and-cpp/2321a98cae5c4830b875837cf552685d.png" alt></p>
+<p><img src="/2023/09/21/23-05-53/6cd952d979ef4a7b994518d2c8c27c56.png" alt="6cd952d979ef4a7b994518d2c8c27c56">                                       <img src="/2023/09/21/23-05-53/2321a98cae5c4830b875837cf552685d.png" alt="2321a98cae5c4830b875837cf552685d"></p>
 <p>然后我们在设置里搜索 code-runner.runInTerminal ，勾选这一项</p>
-<p><img src="../images/VSCode-c-and-cpp/6f0c3688f1a349eca85d1118e620b2d0.png" alt></p>
+<p><img src="/2023/09/21/23-05-53/6f0c3688f1a349eca85d1118e620b2d0.png" alt="6f0c3688f1a349eca85d1118e620b2d0"></p>
 <h2 id="VSCode，启动！"><a href="#VSCode，启动！" class="headerlink" title="VSCode，启动！"></a>VSCode，启动！</h2><p>之后我们点击这个按钮就能在内部终端运行.c 程序了</p>
-<p><img src="../images/VSCode-c-and-cpp/ac14f764aa4a4bc2a087b9a90821bc9f.png" alt></p>
+<p><img src="/2023/09/21/23-05-53/ac14f764aa4a4bc2a087b9a90821bc9f.png" alt="ac14f764aa4a4bc2a087b9a90821bc9f"></p>
 <h2 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h2><p>那如果你习惯了用外部终端，可以这样设置一下</p>
 <p>在设置中搜索 code-runner.languageIdToFileExtensionMap ，并在 setting.json 中编辑文件</p>
 <p>在”code-runner.executorMap”这个对象键中加入以下代码</p>
@@ -1051,6 +1053,10 @@
   </div>
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>

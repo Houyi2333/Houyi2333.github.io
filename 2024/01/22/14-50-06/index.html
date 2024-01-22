@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_round.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_round.png">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"houyi2333.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":210,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="什么是 React ？在2024年的今天，我们的浏览器仍然采用最基本的 html + CSS + JavaScript 构建页面，但是我们可以很明显的感觉到，编写原生三件套代码是比较复杂的。并且在 Web 项目规模庞大和设备多样性越发丰富的今天，代码的可维护性、开发效率、跨平台开发、性能等因素都会影响到我们对开发工具的选择。因此人们想到了一种方式，可不可以先编写一些简化的、高效率的代码，然后用他们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 开发入门">
+<meta property="og:url" content="https://houyi2333.github.io/2024/01/22/14-50-06/">
+<meta property="og:site_name" content="你不定积分没加C的博客">
+<meta property="og:description" content="什么是 React ？在2024年的今天，我们的浏览器仍然采用最基本的 html + CSS + JavaScript 构建页面，但是我们可以很明显的感觉到，编写原生三件套代码是比较复杂的。并且在 Web 项目规模庞大和设备多样性越发丰富的今天，代码的可维护性、开发效率、跨平台开发、性能等因素都会影响到我们对开发工具的选择。因此人们想到了一种方式，可不可以先编写一些简化的、高效率的代码，然后用他们">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://houyi2333.github.io/2024/01/22/14-50-06/image-20240122153740520.png">
+<meta property="og:image" content="https://houyi2333.github.io/2024/01/22/14-50-06/image-20240122155632922.png">
+<meta property="og:image" content="https://houyi2333.github.io/2024/01/22/14-50-06/image-20240122171355674.png">
+<meta property="og:image" content="https://houyi2333.github.io/2024/01/22/14-50-06/image-20240122173348696.png">
+<meta property="article:published_time" content="2024-01-22T06:50:06.000Z">
+<meta property="article:modified_time" content="2024-01-22T11:28:34.570Z">
+<meta property="article:author" content="你不定积分没加C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://houyi2333.github.io/2024/01/22/14-50-06/image-20240122153740520.png">
+
+<link rel="canonical" href="https://houyi2333.github.io/2024/01/22/14-50-06/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>React 开发入门 | 你不定积分没加C的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="你不定积分没加C的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">你不定积分没加C的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">除了不定积分，还有微分方程通解需要+C</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://houyi2333.github.io/2024/01/22/14-50-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="你不定积分没加C">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="你不定积分没加C的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React 开发入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-01-22 14:50:06 / 修改时间：19:28:34" itemprop="dateCreated datePublished" datetime="2024-01-22T14:50:06+08:00">2024-01-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">前端开发</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="什么是-React-？"><a href="#什么是-React-？" class="headerlink" title="什么是 React ？"></a>什么是 React ？</h2><p>在2024年的今天，我们的浏览器仍然采用最基本的 html + CSS + JavaScript 构建页面，但是我们可以很明显的感觉到，编写原生三件套代码是比较复杂的。并且在 Web 项目规模庞大和设备多样性越发丰富的今天，代码的可维护性、开发效率、跨平台开发、性能等因素都会影响到我们对开发工具的选择。因此人们想到了一种方式，可不可以先编写一些简化的、高效率的代码，然后用他们生成 html + CSS + JavaScript 并运行在浏览器上。就像是我们不必编写汇编语言，写 C语言 即可构建可执行文件。就这样， React 诞生了</p>
+<p>维基百科这样定义 React ：React 是一个前端 JavaScript 工具<strong>库</strong>，用于基于 UI 组件构建用户界面</p>
+<p>当前常用的工具（库或框架）不止有 React ，比如 Vue、Angular 等都是常见的构建前端页面的工具</p>
+<p>MDN 这样描述 React ：React 不是一个框架——它的应用甚至不局限于 Web 开发，它可以与其他库一起使用以渲染到特定环境。例如， React Native 可用于构建移动应用程序； React 360 可用于构建虚拟现实应用程序……</p>
+<p>React 是一门令人惊叹的前端技术，其创新性的设计理念和强大的功能使其成为现代 Web 开发的领军者。通过引入虚拟 DOM 、组件化开发和单向数据流等概念， React 不仅提高了应用的性能和可维护性，还让开发者在构建复杂用户界面时拥有更高的灵活性和控制力。 JSX 语法的引入使 UI 代码更加直观和易读，而庞大而活跃的社区生态系统则为开发者提供了丰富的工具和支持。同时， React 的跨平台特性使其在移动开发领域也大放异彩，成为 React Native 的基石。 React 可以被视为一个跨时代的前端开发工具和框架。其引入了许多创新性的概念和技术，对前端开发的方式和效率产生了深远的影响</p>
+<span id="more"></span>
+<h2 id="React-的前世今生"><a href="#React-的前世今生" class="headerlink" title="React 的前世今生"></a>React 的前世今生</h2><h4 id="诞生背景："><a href="#诞生背景：" class="headerlink" title="诞生背景："></a>诞生背景：</h4><p>React 由 Facebook 的工程师 Jordan Walke 于 2011 年创建。最初的目标是解决 Facebook 内部复杂应用的性能问题和开发效率问题</p>
+<h4 id="开源发布："><a href="#开源发布：" class="headerlink" title="开源发布："></a>开源发布：</h4><p>React 在 2013 年 5 月正式开源发布。这一举动使得更多的开发者能够使用和贡献 React ，促进了它的快速发展</p>
+<h4 id="组件化开发："><a href="#组件化开发：" class="headerlink" title="组件化开发："></a>组件化开发：</h4><p>React采用了<strong>组件化</strong>的开发方式，将 UI 拆分为独立的<strong>组件</strong>，使得代码更加<strong>模块化</strong>、可维护。组件化开发成为React的<strong>核心理念</strong>之一，也被其他框架和库广泛采用</p>
+<h4 id="JSX-语法："><a href="#JSX-语法：" class="headerlink" title="JSX 语法："></a>JSX 语法：</h4><p>React 引入了 JSX 语法，允许在 JavaScript 中编写类似 XML 的标记，使 UI 的描述更加直观。 JSX 在编译时会被转换为普通的 JavaScript 代码，使开发者的代码编写更为便捷</p>
+<h4 id="React-Native："><a href="#React-Native：" class="headerlink" title="React Native："></a>React Native：</h4><p>随着移动端应用的兴起， React 的影响力扩展到了<strong>移动开发</strong>领域。 React Native 使开发者能够使用 React 的思想和组件化开发方式来构建原生移动应用，实现了跨平台的目标</p>
+<h4 id="持续更新："><a href="#持续更新：" class="headerlink" title="持续更新："></a>持续更新：</h4><p>React团队持续进行版本迭代和改进，引入新的特性和优化，以适应前端技术的不断发展和用户需求的变化</p>
+<hr>
+<p>（上面随便看看就行，下面才是正文）</p>
+<h2 id="一、React-，启动！"><a href="#一、React-，启动！" class="headerlink" title="一、React ，启动！"></a>一、React ，启动！</h2><p>在某个你想要建立该项目的目录下，运行 React 官方提供的脚手架：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm create react-app learn-react --template typescript -y</span><br></pre></td></tr></table></figure>
+<p>这行命令表示在当前目录下创建一个新的 react 项目，项目名称为 learn-react ，使用 TypeScript 而不是 JavaScript</p>
+<p>如果安装顺利，使用命令 <code>cd learn-react</code> 进入项目文件夹，输入 <code>npm start</code> 即可编译整个应用，随后应当就可以通过本地 3000 端口访问到 React 的欢迎界面了</p>
+<p><img src="/2024/01/22/14-50-06/image-20240122153740520.png" alt="image-20240122153740520"></p>
+<p>为了更好地阅读本文档，推荐下载简化版 React 框架。其中仅保留了最基础、最必要的代码文件</p>
+<p>下载简化版框架之前，我们希望你已经通过上述步骤成功初始化了一个新的 React 应用并能够在 3000 端口访问到欢迎界面。如果已经确认初始化成功，可以通过 <a href="React 开发入门/src.zip">该链接</a> 下载压缩包，请在解压后使用压缩包内的 <code>src</code> 文件夹替换你的 React 应用的 <code>src</code> 文件夹，并再次使用 <code>npm start</code>  命令运行 React 应用</p>
+<p>如果你现在能够在 3000 端口访问到一个写有 <code>Hello, React!</code> 字样的页面，则已经完成了配置</p>
+<p><img src="/2024/01/22/14-50-06/image-20240122155632922.png" alt="image-20240122155632922"></p>
+<h2 id="二、React-项目的结构"><a href="#二、React-项目的结构" class="headerlink" title="二、React 项目的结构"></a>二、React 项目的结构</h2><p><img src="/2024/01/22/14-50-06/image-20240122171355674.png" alt="image-20240122171355674"></p>
+<h4 id="node-modules"><a href="#node-modules" class="headerlink" title="node_modules"></a>node_modules</h4><p>存放项目依赖的第三方库和工具</p>
+<h4 id="public"><a href="#public" class="headerlink" title="public"></a>public</h4><p>包含不需要 webpack 处理的静态资源，如 HTML 文件、网页图标（favicon）等。其中 <code>index.html</code> 是主 HTML 文件，是 React 项目页面加载的入口文件</p>
+<h4 id="src"><a href="#src" class="headerlink" title="src"></a>src</h4><p>包含 React 项目的源码，我们主要编写的就是这个文件夹的内容</p>
+<p>通常里面还会包含 <code>components</code> 、 <code>pages</code> 、 <code>styles</code> 三个文件夹，分别存放了可复用的 React 组件、页面级的 React 组件、样式文件</p>
+<p><code>App.tsx</code> 是我们自定义的一个组件，通过 <code>export default App;</code> 导出，可以被其他文件引入</p>
+<p>接下来重点讲 和 <code>index.tsx</code></p>
+<h5 id="index-tsx"><a href="#index-tsx" class="headerlink" title="index.tsx"></a>index.tsx</h5><p><code>index.tsx</code> 是一个 React 项目中的入口文件，通常用于渲染主应用组件到 HTML 页面：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom/client&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.tsx&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>) <span class="keyword">as</span> <span class="title class_">HTMLElement</span>);</span><br><span class="line">root.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>);</span><br></pre></td></tr></table></figure>
+<p>解释一下这个文件实现的功能</p>
+<p>使用 <code>import</code> 语句导入 React 和 ReactDOM 库，用于创建和渲染 React 组件</p>
+<p>使用 <code>import</code> 导入主应用组件 <code>App</code> </p>
+<p>使用 <code>ReactDOM.createRoot</code> 方法创建一个 <code>root</code> 对象。这个对象代表了 React 渲染的根节点，对应于页面上的容器元素。再通过 <code>document.getElementById(&#39;root&#39;)</code> 方法获取到页面的根元素，之后使用 <code>root.render</code> 方法渲染主应用组件 <code>&lt;App /&gt;</code> 到根节点</p>
+<p>实例化一个组件也是简单的，类似 HTML 语法，只要像 <code>&lt;App /&gt;</code> 一样用尖括号把组件名包裹起来就可以了</p>
+<p>那我们 id 为 <code>root</code> 的根节点在哪里呢？我们打开 <code>public</code> 中的 <code>index.html</code>：</p>
+<p><img src="/2024/01/22/14-50-06/image-20240122173348696.png" alt="image-20240122173348696"></p>
+<p>诶！根节点就在 <code>index.html</code>。而 React 项目页面加载的入口文件就是 <code>index.html</code> ，这也就解释了为什么页面中可以呈现出我们 <code>return</code> 的 <code>h1</code></p>
+<p><code>index.tsx</code> 的作用就是搭建起传统 HTML 和 React TSX 之间的桥梁，让我们可以自由地使用 TSX 语法编写组件，而将这些组件转换到 HTML 的任务则交给了 React 框架</p>
+<p>那又一个问题出现了： React 项目的 <code>public</code> 文件夹里的 <code>index.html</code> 并没有 link 到 <code>src</code> 下的 <code>index.tsx</code> ，那 <code>index.tsx</code> 是怎么 get 到 <code>root</code> 这个 <code>id</code> 的呢？</p>
+<p>这是因为 React DOM 在运行时会自动查找页面上具有特定 <code>id</code> 的元素，然后将组件渲染到该元素中。具体来说，React DOM 通常会在 <code>index.html</code> 中的 <code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code> 元素处渲染应用。这个元素是在 <code>index.html</code> 中静态存在的，而不是通过 JavaScript 动态创建的。React 会将应用渲染到这个预定义的根元素上。说白了就是，这套逻辑已经在 React 的原码里写死了</p>
+<h2 id="三、JSX-和-JS-的区别"><a href="#三、JSX-和-JS-的区别" class="headerlink" title="三、JSX 和 JS 的区别"></a>三、JSX 和 JS 的区别</h2><p>JSX 是一种 JavaScript 的语法扩展，也可以说 JSX 是一种方便构建 UI 的语法糖，用于在 JavaScript 代码中描述 UI 结构</p>
+<p>JSX 和原生 JavaScript 的最大差别就是引入了标签语法：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>;</span><br></pre></td></tr></table></figure>
+<p>这类似于 HTML 标签的语法定义了一个对象，其等价于以下表达：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">    <span class="string">&quot;p&quot;</span>,</span><br><span class="line">    <span class="literal">undefined</span>,</span><br><span class="line">    <span class="string">&quot;Hello world!&quot;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>既然标签可以是变量，那它就可以被返回：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">App</span>: <span class="title class_">React</span>.<span class="property">FC</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+<p><code>React.FC</code> 是 React 中的一个泛型类型，用于定义函数组件（Function Components）。在使用 TypeScript 编写 React 组件时，可以使用 <code>React.FC</code> 来明确函数组件的类型<br>我们注意 <code>return &lt;h1&gt;Hello, React!&lt;/h1&gt;;</code> 这行代码，它使得 <code>App</code> 这个函数返回了一个 <code>h1</code> 标签，这种写法我们称为<strong>声明式 UI </strong></p>
+<p>在 JSX 中，每个 JSX 表达式必须被包裹在一个父元素中。比如这样的代码就会报错：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">App</span>: <span class="title class_">React</span>.<span class="property">FC</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">            <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">            <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, JSX!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+<p>这是因为 JSX 实际上被转译成 JavaScript 代码，而 JavaScript 中每个表达式只能有一个根节点。</p>
+<p>如果真的要返回两个 <code>h1</code> ，可以考虑将他们放在一个 <code>div</code> 中：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">App</span>: <span class="title class_">React</span>.<span class="property">FC</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, JSX!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+<p>如果你不想使用额外的容器元素，你可以考虑使用 React Fragments。React Fragments（片段）是一种特殊的 React 组件，用于在不添加额外 DOM 元素的情况下包裹多个子元素。Fragments 提供了一种解决“JSX 表达式必须具有一个父元素”这一限制的方式。</p>
+<p>使用 React Fragments 的语法可以是空标签 <code>&lt;&gt;&lt;/&gt;</code> 或 <code>&lt;React.Fragment&gt;&lt;/React.Fragment&gt;</code> ，通常使用空标签</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">App</span>: <span class="title class_">React</span>.<span class="property">FC</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, JSX!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
+<p>下一篇博客我们将会讲解 React 的核心概念——组件。在React中，组件是构建用户界面的基本单元，具有独立的状态和行为，能够将复杂的UI拆分为可管理的、可复用的模块。组件化开发使得代码结构更清晰、可维护性更强，同时提供了一种高效的方式来组织、测试和重用代码。通过组件，React支持了声明式UI的开发范式，使开发者能够专注于描述界面的外观和行为，而无需过多关注底层DOM操作，从而提高了开发效率、代码可读性，并促进了团队协作。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    我愿意资助作者
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="你不定积分没加C 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="你不定积分没加C 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>你不定积分没加C
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://houyi2333.github.io/2024/01/22/14-50-06/" title="React 开发入门">https://houyi2333.github.io/2024/01/22/14-50-06/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/01/21/17-16-23/" rel="prev" title="从 JavaScript 到 TypeScript">
+      <i class="fa fa-chevron-left"></i> 从 JavaScript 到 TypeScript
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-React-%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是 React ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F"><span class="nav-number">2.</span> <span class="nav-text">React 的前世今生</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%9E%E7%94%9F%E8%83%8C%E6%99%AF%EF%BC%9A"><span class="nav-number">2.0.1.</span> <span class="nav-text">诞生背景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E6%BA%90%E5%8F%91%E5%B8%83%EF%BC%9A"><span class="nav-number">2.0.2.</span> <span class="nav-text">开源发布：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%9A"><span class="nav-number">2.0.3.</span> <span class="nav-text">组件化开发：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX-%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="nav-number">2.0.4.</span> <span class="nav-text">JSX 语法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React-Native%EF%BC%9A"><span class="nav-number">2.0.5.</span> <span class="nav-text">React Native：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%9A"><span class="nav-number">2.0.6.</span> <span class="nav-text">持续更新：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81React-%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%81"><span class="nav-number">3.</span> <span class="nav-text">一、React ，启动！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81React-%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">二、React 项目的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#node-modules"><span class="nav-number">4.0.1.</span> <span class="nav-text">node_modules</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#public"><span class="nav-number">4.0.2.</span> <span class="nav-text">public</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#src"><span class="nav-number">4.0.3.</span> <span class="nav-text">src</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#index-tsx"><span class="nav-number">4.0.3.1.</span> <span class="nav-text">index.tsx</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81JSX-%E5%92%8C-JS-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">三、JSX 和 JS 的区别</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="你不定积分没加C"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">你不定积分没加C</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Houyi2333" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Houyi2333" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/2422706517@qq.com" title="E-Mail → 2422706517@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://dpp-alivender.life/" title="http:&#x2F;&#x2F;dpp-alivender.life&#x2F;" rel="noopener" target="_blank">Dppp</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://lentinel.icu/" title="https:&#x2F;&#x2F;lentinel.icu&#x2F;" rel="noopener" target="_blank">Lentinel</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">你不定积分没加C</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

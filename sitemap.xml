@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://houyi2333.github.io/2024/01/07/17-04-19/</loc>
+    
+    <lastmod>2024-01-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://houyi2333.github.io/2024/01/04/18-38-27/</loc>
     
     <lastmod>2024-01-22</lastmod>
@@ -39,15 +48,6 @@
   
   <url>
     <loc>https://houyi2333.github.io/2023/10/06/13-11-21/</loc>
-    
-    <lastmod>2024-01-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://houyi2333.github.io/2024/01/07/17-04-19/</loc>
     
     <lastmod>2024-01-22</lastmod>
     
@@ -110,14 +110,14 @@
   </url>
   
   <url>
-    <loc>https://houyi2333.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://houyi2333.github.io/categories/VSCode/</loc>
     <lastmod>2024-01-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://houyi2333.github.io/categories/VSCode/</loc>
+    <loc>https://houyi2333.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2024-01-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

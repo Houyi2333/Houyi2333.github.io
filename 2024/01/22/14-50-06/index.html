@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://houyi2333.github.io/2024/01/22/14-50-06/image-20240122171355674.png">
 <meta property="og:image" content="https://houyi2333.github.io/2024/01/22/14-50-06/image-20240122173348696.png">
 <meta property="article:published_time" content="2024-01-22T06:50:06.000Z">
-<meta property="article:modified_time" content="2024-01-22T11:45:09.379Z">
+<meta property="article:modified_time" content="2024-01-27T11:18:34.575Z">
 <meta property="article:author" content="你不定积分没加C">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://houyi2333.github.io/2024/01/22/14-50-06/image-20240122153740520.png">
@@ -188,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-01-22 14:50:06 / 修改时间：19:45:09" itemprop="dateCreated datePublished" datetime="2024-01-22T14:50:06+08:00">2024-01-22</time>
+              <time title="创建时间：2024-01-22 14:50:06" itemprop="dateCreated datePublished" datetime="2024-01-22T14:50:06+08:00">2024-01-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-27 19:18:34" itemprop="dateModified" datetime="2024-01-27T19:18:34+08:00">2024-01-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -208,7 +214,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.8k</span>
+              <span>5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -241,7 +247,7 @@
 <h4 id="持续更新："><a href="#持续更新：" class="headerlink" title="持续更新："></a>持续更新：</h4><p>React团队持续进行版本迭代和改进，引入新的特性和优化，以适应前端技术的不断发展和用户需求的变化</p>
 <hr>
 <p>（上面随便看看就行，下面才是正文）</p>
-<h2 id="一、React-，启动！"><a href="#一、React-，启动！" class="headerlink" title="一、React ，启动！"></a>一、React ，启动！</h2><p>在某个你想要建立该项目的目录下，运行 React 官方提供的脚手架：</p>
+<h2 id="React-，启动！"><a href="#React-，启动！" class="headerlink" title="React ，启动！"></a>React ，启动！</h2><p>在某个你想要建立该项目的目录下，运行 React 官方提供的脚手架：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm create react-app learn-react --template typescript -y</span><br></pre></td></tr></table></figure>
 <p>这行命令表示在当前目录下创建一个新的 react 项目，项目名称为 learn-react ，使用 TypeScript 而不是 JavaScript</p>
 <p>如果安装顺利，使用命令 <code>cd learn-react</code> 进入项目文件夹，输入 <code>npm start</code> 即可编译整个应用，随后应当就可以通过本地 3000 端口访问到 React 的欢迎界面了</p>
@@ -250,9 +256,9 @@
 <p>下载简化版框架之前，我们希望你已经通过上述步骤成功初始化了一个新的 React 应用并能够在 3000 端口访问到欢迎界面。如果已经确认初始化成功，可以通过 <a href="./src.zip">该链接</a> 下载压缩包，请在解压后使用压缩包内的 <code>src</code> 文件夹替换你的 React 应用的 <code>src</code> 文件夹，并再次使用 <code>npm start</code>  命令运行 React 应用</p>
 <p>如果你现在能够在 3000 端口访问到一个写有 <code>Hello, React!</code> 字样的页面，则已经完成了配置</p>
 <p><img src="/2024/01/22/14-50-06/image-20240122155632922.png" alt="image-20240122155632922"></p>
-<h2 id="二、React-项目的结构"><a href="#二、React-项目的结构" class="headerlink" title="二、React 项目的结构"></a>二、React 项目的结构</h2><p><img src="/2024/01/22/14-50-06/image-20240122171355674.png" alt="image-20240122171355674"></p>
+<h2 id="React-项目的结构"><a href="#React-项目的结构" class="headerlink" title="React 项目的结构"></a>React 项目的结构</h2><p><img src="/2024/01/22/14-50-06/image-20240122171355674.png" alt="image-20240122171355674"></p>
 <h4 id="node-modules"><a href="#node-modules" class="headerlink" title="node_modules"></a>node_modules</h4><p>存放项目依赖的第三方库和工具</p>
-<h4 id="public"><a href="#public" class="headerlink" title="public"></a>public</h4><p>包含不需要 webpack 处理的静态资源，如 HTML 文件、网页图标（favicon）等。其中 <code>index.html</code> 是主 HTML 文件，是 React 项目页面加载的入口文件</p>
+<h4 id="public"><a href="#public" class="headerlink" title="public"></a>public</h4><p>包含不需要 webpack 处理的静态资源，如 HTML 文件、网页图标（favicon）等。其中 <code>index.html</code> 是主 HTML 文件，是 React 项目页面加载的入口文件，后面还会再提到它</p>
 <h4 id="src"><a href="#src" class="headerlink" title="src"></a>src</h4><p>包含 React 项目的源码，我们主要编写的就是这个文件夹的内容</p>
 <p>通常里面还会包含 <code>components</code> 、 <code>pages</code> 、 <code>styles</code> 三个文件夹，分别存放了可复用的 React 组件、页面级的 React 组件、样式文件</p>
 <p><code>App.tsx</code> 是我们自定义的一个组件，通过 <code>export default App;</code> 导出，可以被其他文件引入</p>
@@ -270,7 +276,12 @@
 <p><code>index.tsx</code> 的作用就是搭建起传统 HTML 和 React TSX 之间的桥梁，让我们可以自由地使用 TSX 语法编写组件，而将这些组件转换到 HTML 的任务则交给了 React 框架</p>
 <p>那又一个问题出现了： React 项目的 <code>public</code> 文件夹里的 <code>index.html</code> 并没有 link 到 <code>src</code> 下的 <code>index.tsx</code> ，那 <code>index.tsx</code> 是怎么 get 到 <code>root</code> 这个 <code>id</code> 的呢？</p>
 <p>这是因为 React DOM 在运行时会自动查找页面上具有特定 <code>id</code> 的元素，然后将组件渲染到该元素中。具体来说，React DOM 通常会在 <code>index.html</code> 中的 <code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code> 元素处渲染应用。这个元素是在 <code>index.html</code> 中静态存在的，而不是通过 JavaScript 动态创建的。React 会将应用渲染到这个预定义的根元素上。说白了就是，这套逻辑已经在 React 的原码里写死了</p>
-<h2 id="三、JSX-和-JS-的区别"><a href="#三、JSX-和-JS-的区别" class="headerlink" title="三、JSX 和 JS 的区别"></a>三、JSX 和 JS 的区别</h2><p>JSX 是一种 JavaScript 的语法扩展，也可以说 JSX 是一种方便构建 UI 的语法糖，用于在 JavaScript 代码中描述 UI 结构</p>
+<h4 id="gitgnore"><a href="#gitgnore" class="headerlink" title=".gitgnore"></a>.gitgnore</h4><p>指定 Git 版本控制系统忽略特定文件或目录的配置文件，很熟悉了，不多介绍</p>
+<h4 id="prettierrc"><a href="#prettierrc" class="headerlink" title=".prettierrc"></a>.prettierrc</h4><p>用于配置 Prettier 工具的文件（这不是 React 项目之一，这只是 Prettier 插件的配置文件，是我自己添加的）</p>
+<h4 id="package-lock-json"><a href="#package-lock-json" class="headerlink" title=".package-lock.json"></a>.package-lock.json</h4><p><code>npm</code> 在安装包时生成的一个锁定文件，规定了包的安装版本，防止在不同的开发环境上因包的版本不一致出现问题</p>
+<h4 id="package-json"><a href="#package-json" class="headerlink" title=".package.json"></a>.package.json</h4><p>在上一篇《现代前端开发基础》已经讲过</p>
+<h4 id="README-md"><a href="#README-md" class="headerlink" title="README.md"></a>README.md</h4><p>React 官方写的 README</p>
+<h2 id="JSX-和-JS-的区别"><a href="#JSX-和-JS-的区别" class="headerlink" title="JSX 和 JS 的区别"></a>JSX 和 JS 的区别</h2><p>JSX 是一种 JavaScript 的语法扩展，也可以说 JSX 是一种方便构建 UI 的语法糖，用于在 JavaScript 代码中描述 UI 结构</p>
 <p>JSX 和原生 JavaScript 的最大差别就是引入了标签语法：</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>;</span><br></pre></td></tr></table></figure>
 <p>这类似于 HTML 标签的语法定义了一个对象，其等价于以下表达：</p>
@@ -286,7 +297,7 @@
 <p>如果你不想使用额外的容器元素，你可以考虑使用 React Fragments。React Fragments（片段）是一种特殊的 React 组件，用于在不添加额外 DOM 元素的情况下包裹多个子元素。Fragments 提供了一种解决“JSX 表达式必须具有一个父元素”这一限制的方式。</p>
 <p>使用 React Fragments 的语法可以是空标签 <code>&lt;&gt;&lt;/&gt;</code> 或 <code>&lt;React.Fragment&gt;&lt;/React.Fragment&gt;</code> ，通常使用空标签</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">App</span>: <span class="title class_">React</span>.<span class="property">FC</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, React!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, JSX!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
-<p>下一篇博客我们将会讲解 React 的核心概念——组件。在React中，组件是构建用户界面的基本单元，具有独立的状态和行为，能够将复杂的UI拆分为可管理的、可复用的模块。组件化开发使得代码结构更清晰、可维护性更强，同时提供了一种高效的方式来组织、测试和重用代码。通过组件，React支持了声明式UI的开发范式，使开发者能够专注于描述界面的外观和行为，而无需过多关注底层DOM操作，从而提高了开发效率、代码可读性，并促进了团队协作。</p>
+<p>下一篇博客我们将会讲解 React 的核心概念——组件。在React中，组件是构建用户界面的基本单元，具有独立的状态和行为，能够将复杂的UI拆分为可管理的、可复用的模块。组件化开发使得代码结构更清晰、可维护性更强，同时提供了一种高效的方式来组织、测试和重用代码。通过组件，React支持了声明式 UI 的开发范式，使开发者能够专注于描述界面的外观和行为，而无需过多关注底层DOM操作，从而提高开发效率。</p>
 
     </div>
 
@@ -401,7 +412,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-React-%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是 React ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F"><span class="nav-number">2.</span> <span class="nav-text">React 的前世今生</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%9E%E7%94%9F%E8%83%8C%E6%99%AF%EF%BC%9A"><span class="nav-number">2.0.1.</span> <span class="nav-text">诞生背景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E6%BA%90%E5%8F%91%E5%B8%83%EF%BC%9A"><span class="nav-number">2.0.2.</span> <span class="nav-text">开源发布：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%9A"><span class="nav-number">2.0.3.</span> <span class="nav-text">组件化开发：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX-%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="nav-number">2.0.4.</span> <span class="nav-text">JSX 语法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React-Native%EF%BC%9A"><span class="nav-number">2.0.5.</span> <span class="nav-text">React Native：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%9A"><span class="nav-number">2.0.6.</span> <span class="nav-text">持续更新：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81React-%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%81"><span class="nav-number">3.</span> <span class="nav-text">一、React ，启动！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81React-%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">二、React 项目的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#node-modules"><span class="nav-number">4.0.1.</span> <span class="nav-text">node_modules</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#public"><span class="nav-number">4.0.2.</span> <span class="nav-text">public</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#src"><span class="nav-number">4.0.3.</span> <span class="nav-text">src</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#index-tsx"><span class="nav-number">4.0.3.1.</span> <span class="nav-text">index.tsx</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81JSX-%E5%92%8C-JS-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">三、JSX 和 JS 的区别</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-React-%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是 React ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F"><span class="nav-number">2.</span> <span class="nav-text">React 的前世今生</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%9E%E7%94%9F%E8%83%8C%E6%99%AF%EF%BC%9A"><span class="nav-number">2.0.1.</span> <span class="nav-text">诞生背景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E6%BA%90%E5%8F%91%E5%B8%83%EF%BC%9A"><span class="nav-number">2.0.2.</span> <span class="nav-text">开源发布：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%9A"><span class="nav-number">2.0.3.</span> <span class="nav-text">组件化开发：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX-%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="nav-number">2.0.4.</span> <span class="nav-text">JSX 语法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React-Native%EF%BC%9A"><span class="nav-number">2.0.5.</span> <span class="nav-text">React Native：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%9A"><span class="nav-number">2.0.6.</span> <span class="nav-text">持续更新：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-%EF%BC%8C%E5%90%AF%E5%8A%A8%EF%BC%81"><span class="nav-number">3.</span> <span class="nav-text">React ，启动！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">React 项目的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#node-modules"><span class="nav-number">4.0.1.</span> <span class="nav-text">node_modules</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#public"><span class="nav-number">4.0.2.</span> <span class="nav-text">public</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#src"><span class="nav-number">4.0.3.</span> <span class="nav-text">src</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#index-tsx"><span class="nav-number">4.0.3.1.</span> <span class="nav-text">index.tsx</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitgnore"><span class="nav-number">4.0.4.</span> <span class="nav-text">.gitgnore</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#prettierrc"><span class="nav-number">4.0.5.</span> <span class="nav-text">.prettierrc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#package-lock-json"><span class="nav-number">4.0.6.</span> <span class="nav-text">.package-lock.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#package-json"><span class="nav-number">4.0.7.</span> <span class="nav-text">.package.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#README-md"><span class="nav-number">4.0.8.</span> <span class="nav-text">README.md</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX-%E5%92%8C-JS-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">JSX 和 JS 的区别</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

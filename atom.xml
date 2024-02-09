@@ -6,7 +6,7 @@
   <link href="https://houyi2333.github.io/atom.xml" rel="self"/>
   
   <link href="https://houyi2333.github.io/"/>
-  <updated>2024-02-05T02:50:43.649Z</updated>
+  <updated>2024-02-09T00:47:19.899Z</updated>
   <id>https://houyi2333.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每天起床头件事，先背一遍展开式</title>
+    <link href="https://houyi2333.github.io/2024/02/09/08-43-41/"/>
+    <id>https://houyi2333.github.io/2024/02/09/08-43-41/</id>
+    <published>2024-02-09T00:43:41.000Z</published>
+    <updated>2024-02-09T00:47:19.899Z</updated>
+    
+    <content type="html"><![CDATA[<p>祝大家新年快乐</p><p>既然除夕不是法定节假日，那就更新一下展开式吧</p><p>下载链接：<a href="./zks.pdf" download>每天起床头件事，先背一遍展开式</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;祝大家新年快乐&lt;/p&gt;
+&lt;p&gt;既然除夕不是法定节假日，那就更新一下展开式吧&lt;/p&gt;
+&lt;p&gt;下载链接：&lt;a href=&quot;./zks.pdf&quot; download&gt;每天起床头件事，先背一遍展开式&lt;/a&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="学习指南" scheme="https://houyi2333.github.io/categories/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>React 的组件</title>
@@ -179,7 +204,7 @@
     <link href="https://houyi2333.github.io/2024/01/04/18-38-27/"/>
     <id>https://houyi2333.github.io/2024/01/04/18-38-27/</id>
     <published>2024-01-04T10:38:27.000Z</published>
-    <updated>2024-01-22T11:48:36.066Z</updated>
+    <updated>2024-02-09T00:47:56.162Z</updated>
     
     <content type="html"><![CDATA[<p>这门课在大工只有软院开，并且极其的抽象，虽然他叫具体数学</p><p>这门课的虽然很抽象，但是考试很简单，全部源自 PPT 和作业题，几乎连数都不变</p><p>这里在知识点上进行了一下总结（其实就是把 PPT 用人话说了一遍），建议先看会知识点，再看 PPT 的题，再看作业题</p><p>下载链接：<a href="./note.pdf" download>具体数学笔记</a></p>]]></content>
     
@@ -193,7 +218,7 @@
     
     
     
-    <category term="具体数学" scheme="https://houyi2333.github.io/categories/%E5%85%B7%E4%BD%93%E6%95%B0%E5%AD%A6/"/>
+    <category term="学习指南" scheme="https://houyi2333.github.io/categories/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/"/>
     
     
   </entry>

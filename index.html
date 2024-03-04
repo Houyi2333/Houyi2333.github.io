@@ -271,7 +271,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-05 10:50:43" itemprop="dateModified" datetime="2024-02-05T10:50:43+08:00">2024-02-05</time>
+                <time title="修改时间：2024-03-02 15:26:00" itemprop="dateModified" datetime="2024-03-02T15:26:00+08:00">2024-03-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -465,7 +465,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-22 14:22:46" itemprop="dateModified" datetime="2024-01-22T14:22:46+08:00">2024-01-22</time>
+                <time title="修改时间：2024-03-04 12:14:55" itemprop="dateModified" datetime="2024-03-04T12:14:55+08:00">2024-03-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -483,7 +483,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.7k</span>
+              <span>9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -510,7 +510,8 @@
 <p>TypeScript 最大的特点就是引入了类型系统，这样就可以在编译为 JavaScript 代码之前由编译器进行类型检查。在这样的条件下，TypeScript 中的变量在声明的时候就可以指定类型，编译器在将 TypeScript 代码编译为 JavaScript 代码的时候会进行类型检查，若有不符合类型声明的情况则会报错：</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fun = (<span class="attr">name</span>: <span class="built_in">string</span>): <span class="function"><span class="params">void</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello, &quot;</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fun</span>(<span class="number">2</span>); <span class="comment">// Error!</span></span><br></pre></td></tr></table></figure>
 <p>上面的 <code>fun</code> 函数要求传入一个 <code>string</code> 类型的值，且返回类型为 <code>void</code> 但是我们调用的时候却传入了一个数字2，这显然是不符合函数参数要求的，因此 TypeScript 编译器会报错</p>
-<p>TypeScript 有着静态类型检查，具有类型系统，可以在开发时捕获许多常见的错误。通过类型检查，可以在编码阶段就发现潜在的问题，减少运行时错误。因此我们更推荐使用 TypeScript 进行项目开发，而不是 JavaScript</p>
+<p>TypeScript 有着静态类型检查，具有类型系统，可以在开发时捕获许多常见的错误。通过类型检查，可以在编码阶段就发现潜在的问题，减少运行时错误。</p>
+<p>但是，在实际开发中，选择 TypeScript 还是 JavaScript 取决于项目的具体需求和团队的实际情况。首先，对于大型项目、需要长期维护和多人协作的项目，TypeScript 的优势尤为明显。它提供了类型检查和工具支持，可以提高代码的可靠性和团队的效率。而对于小型项目或快速原型开发，JavaScript 可能更适合快速迭代和开发的需求。其次，如果团队已经熟悉 JavaScript 生态系统，并且没有特别需要 TypeScript 的需求，继续使用 JavaScript 也是一个合理的选择。要考虑团队成员的技术水平和学习成本。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/01/21/17-16-23/#more" rel="contents">

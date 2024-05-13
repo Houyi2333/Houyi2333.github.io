@@ -187,7 +187,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-13 22:54:52" itemprop="dateModified" datetime="2024-05-13T22:54:52+08:00">2024-05-13</time>
+                <time title="修改时间：2024-05-13 23:02:28" itemprop="dateModified" datetime="2024-05-13T23:02:28+08:00">2024-05-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -205,7 +205,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.6k</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -226,32 +226,14 @@
       
           <p>这是操作系统上机的 LLM 部署的报告总结部分（）</p>
 <h2 id="一、部署通义千问-1-5-0-5B-Chat-GGUF"><a href="#一、部署通义千问-1-5-0-5B-Chat-GGUF" class="headerlink" title="一、部署通义千问 1.5-0.5B-Chat-GGUF"></a>一、部署通义千问 1.5-0.5B-Chat-GGUF</h2><h4 id="1、使用-modelscope-下载模型文件"><a href="#1、使用-modelscope-下载模型文件" class="headerlink" title="1、使用 modelscope 下载模型文件"></a>1、使用 <code>modelscope</code> 下载模型文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> modelscope.hub.file_download <span class="keyword">import</span> model_file_download</span><br><span class="line"> 	</span><br><span class="line">model_dir = model_file_download(model_id=<span class="string">&#x27;qwen/Qwen1.5-0.5B-Chat-GGUF&#x27;</span>,file_path=<span class="string">&#x27;qwen1_5-0_5b-chat-q5_k_m.gguf&#x27;</span>,revision=<span class="string">&#x27;master&#x27;</span>,cache_dir=<span class="string">&#x27;path/to/local/dir&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="2、编译-llama-cpp"><a href="#2、编译-llama-cpp" class="headerlink" title="2、编译 llama.cpp"></a>2、编译 llama.cpp</h4><p>LLama.cpp 是一个用于本地推理的，与 OpenAI API 规范兼容的 REST API。它允许在本地使用消费级硬件运行 LLM，而不是依赖于云服务或大型服务器</p>
-<p>使用 <code>Git clone https://github.com/ggerganov/llama.cpp</code> 拉取 <code>llama.cpp</code> 开源项目仓库至本地</p>
-<p>之后在 <code>llama.cpp</code> 文件夹下执行 <code>make -j</code> 进行编译</p>
-<p><img src="/2024/05/12/19-53-23/image-20240512201147706.png" alt="image-20240512201147706"></p>
-<p>（已经编译过了，所以是 default）</p>
-<h3 id="3、加载模型并执行"><a href="#3、加载模型并执行" class="headerlink" title="3、加载模型并执行"></a>3、加载模型并执行</h3><p>在 <code>llama.cpp</code> 文件夹下执行 <code>./main -m ../path/to/local/dir/qwen/Qwen1.5-0.5B-Chat-GGUF/qwen1_5-0_5b-chat-q5_k_m.gguf -n 512 --color -i -cml -f prompts/chat-with-qwen.txt</code> 命令以进行模型加载</p>
-<p><img src="/2024/05/12/19-53-23/image-20240512201347182.png" alt="image-20240512201347182"></p>
-<h2 id="二、基于-OpenVINO-的模型量化实践"><a href="#二、基于-OpenVINO-的模型量化实践" class="headerlink" title="二、基于 OpenVINO 的模型量化实践"></a>二、基于 OpenVINO 的模型量化实践</h2><h4 id="1、新建-qwen-ov文件夹"><a href="#1、新建-qwen-ov文件夹" class="headerlink" title="1、新建 qwen-ov文件夹"></a>1、新建 <code>qwen-ov</code>文件夹</h4><p><code>mkdir qwen-ov</code> </p>
-<h4 id="2、创建虚拟环境"><a href="#2、创建虚拟环境" class="headerlink" title="2、创建虚拟环境"></a>2、创建虚拟环境</h4><p>Python 虚拟环境是一个独立于系统 Python 解释器的环境，可以在其中安装和管理特定版本的 Python 包和依赖项，而不会影响到系统中的其他 Python 应用程序</p>
-<p>执行 <code>python3 -m venv qwenVenv</code> 创建一个名为 <code>qwenVenv</code> 的 Python 虚拟环境</p>
-<p>执行 <code>source qwenVenv/bin/activate</code> 激活之前创建的名为 <code>qwenVenv</code> 的 Python 虚拟环境</p>
-<p>此时命令行前会有虚拟环境名称的提示</p>
-<p><img src="/2024/05/12/19-53-23/image-20240512202004938.png" alt="image-20240512202004938"></p>
-<h4 id="3、安装依赖包"><a href="#3、安装依赖包" class="headerlink" title="3、安装依赖包"></a>3、安装依赖包</h4><p>先执行 <code>pip install wheel setuptools</code> 安装 Python 打包分发工具 setuptools</p>
-<p>之后执行 <code>touch requirement.txt</code> 创建 <code>requirements.txt</code>，执行 <code>code requirements.txt</code> 使用 <code>vscode</code> 进行编辑：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nncf==2.8.1</span><br><span class="line">optimum-intel&gt;=1.16.0</span><br><span class="line">transformers&gt;=4.38.2</span><br><span class="line">openvino&gt;=2024.0.0</span><br><span class="line">onnx&gt;=1.15.0</span><br><span class="line">huggingface-hub&gt;=0.21.3</span><br></pre></td></tr></table></figure>
-<p><code>requirements.txt</code> 是一个包含要安装的软件包列表的文件</p>
-<p>执行 <code>pip install -r requirements.txt</code> 进行安装</p>
-<p> <img src="/2024/05/12/19-53-23/image-20240512203836135.png" alt="image-20240512203836135"></p>
-<p>这一步需要非常非常非常长的时间</p>
-<h4 id="4、下载模型"><a href="#4、下载模型" class="headerlink" title="4、下载模型"></a>4、下载模型</h4><p>执行 <code>huggingface-cli download --resume-download --local-dir-use-symlinks False Qwen/Qwen1.5-0.5B-Chat --local-dir model_dir/Qwen1.5-0.5B-Chat</code> 下载模型到 <code>qwen-ov</code> 下的 <code>model_dir</code> 文件夹下</p>
-<p>这一步也需要非常非常非常长的时间</p>
-<h4 id="5、转换模型"><a href="#5、转换模型" class="headerlink" title="5、转换模型"></a>5、转换模型</h4><p>止步于此，参数有问题，搜索引擎没抢救成功</p>
-<p><img src="/2024/05/12/19-53-23/image-20240512201147707.png" alt="image-20240512201147707"></p>
-<p>开源仓库：<a target="_blank" rel="noopener" href="https://github.com/Houyi2333/OSLab01_LLM">Houyi2333/OSLab01_LLM: 操作系统上机LLM大模型部署实验的GitHub仓库</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/05/12/19-53-23/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

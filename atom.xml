@@ -6,7 +6,7 @@
   <link href="https://houyi2333.github.io/atom.xml" rel="self"/>
   
   <link href="https://houyi2333.github.io/"/>
-  <updated>2024-05-13T15:02:28.774Z</updated>
+  <updated>2024-03-31T03:10:20.241Z</updated>
   <id>https://houyi2333.github.io/</id>
   
   <author>
@@ -15,26 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>操作系统上机——大模型部署</title>
-    <link href="https://houyi2333.github.io/2024/05/12/19-53-23/"/>
-    <id>https://houyi2333.github.io/2024/05/12/19-53-23/</id>
-    <published>2024-05-12T11:53:23.000Z</published>
-    <updated>2024-05-13T15:02:28.774Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是操作系统上机的 LLM 部署的报告总结部分（）</p><h2 id="一、部署通义千问-1-5-0-5B-Chat-GGUF"><a href="#一、部署通义千问-1-5-0-5B-Chat-GGUF" class="headerlink" title="一、部署通义千问 1.5-0.5B-Chat-GGUF"></a>一、部署通义千问 1.5-0.5B-Chat-GGUF</h2><h4 id="1、使用-modelscope-下载模型文件"><a href="#1、使用-modelscope-下载模型文件" class="headerlink" title="1、使用 modelscope 下载模型文件"></a>1、使用 <code>modelscope</code> 下载模型文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> modelscope.hub.file_download <span class="keyword">import</span> model_file_download</span><br><span class="line"> </span><br><span class="line">model_dir = model_file_download(model_id=<span class="string">&#x27;qwen/Qwen1.5-0.5B-Chat-GGUF&#x27;</span>,file_path=<span class="string">&#x27;qwen1_5-0_5b-chat-q5_k_m.gguf&#x27;</span>,revision=<span class="string">&#x27;master&#x27;</span>,cache_dir=<span class="string">&#x27;path/to/local/dir&#x27;</span>)</span><br></pre></td></tr></table></figure><span id="more"></span><h4 id="2、编译-llama-cpp"><a href="#2、编译-llama-cpp" class="headerlink" title="2、编译 llama.cpp"></a>2、编译 llama.cpp</h4><p>LLama.cpp 是一个用于本地推理的，与 OpenAI API 规范兼容的 REST API。它允许在本地使用消费级硬件运行 LLM，而不是依赖于云服务或大型服务器</p><p>使用 <code>Git clone https://github.com/ggerganov/llama.cpp</code> 拉取 <code>llama.cpp</code> 开源项目仓库至本地</p><p>之后在 <code>llama.cpp</code> 文件夹下执行 <code>make -j</code> 进行编译</p><p><img src="/2024/05/12/19-53-23/image-20240512201147706.png" alt="image-20240512201147706"></p><p>（已经编译过了，所以是 default）</p><h3 id="3、加载模型并执行"><a href="#3、加载模型并执行" class="headerlink" title="3、加载模型并执行"></a>3、加载模型并执行</h3><p>在 <code>llama.cpp</code> 文件夹下执行 <code>./main -m ../path/to/local/dir/qwen/Qwen1.5-0.5B-Chat-GGUF/qwen1_5-0_5b-chat-q5_k_m.gguf -n 512 --color -i -cml -f prompts/chat-with-qwen.txt</code> 命令以进行模型加载</p><p><img src="/2024/05/12/19-53-23/image-20240512201347182.png" alt="image-20240512201347182"></p><h2 id="二、基于-OpenVINO-的模型量化实践"><a href="#二、基于-OpenVINO-的模型量化实践" class="headerlink" title="二、基于 OpenVINO 的模型量化实践"></a>二、基于 OpenVINO 的模型量化实践</h2><h4 id="1、新建-qwen-ov文件夹"><a href="#1、新建-qwen-ov文件夹" class="headerlink" title="1、新建 qwen-ov文件夹"></a>1、新建 <code>qwen-ov</code>文件夹</h4><p><code>mkdir qwen-ov</code> </p><h4 id="2、创建虚拟环境"><a href="#2、创建虚拟环境" class="headerlink" title="2、创建虚拟环境"></a>2、创建虚拟环境</h4><p>Python 虚拟环境是一个独立于系统 Python 解释器的环境，可以在其中安装和管理特定版本的 Python 包和依赖项，而不会影响到系统中的其他 Python 应用程序</p><p>执行 <code>python3 -m venv qwenVenv</code> 创建一个名为 <code>qwenVenv</code> 的 Python 虚拟环境</p><p>执行 <code>source qwenVenv/bin/activate</code> 激活之前创建的名为 <code>qwenVenv</code> 的 Python 虚拟环境</p><p>此时命令行前会有虚拟环境名称的提示</p><p><img src="/2024/05/12/19-53-23/image-20240512202004938.png" alt="image-20240512202004938"></p><h4 id="3、安装依赖包"><a href="#3、安装依赖包" class="headerlink" title="3、安装依赖包"></a>3、安装依赖包</h4><p>先执行 <code>pip install wheel setuptools</code> 安装 Python 打包分发工具 setuptools</p><p>之后执行 <code>touch requirement.txt</code> 创建 <code>requirements.txt</code>，执行 <code>code requirements.txt</code> 使用 <code>vscode</code> 进行编辑：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nncf==2.8.1</span><br><span class="line">optimum-intel&gt;=1.16.0</span><br><span class="line">transformers&gt;=4.38.2</span><br><span class="line">openvino&gt;=2024.0.0</span><br><span class="line">onnx&gt;=1.15.0</span><br><span class="line">huggingface-hub&gt;=0.21.3</span><br></pre></td></tr></table></figure><p><code>requirements.txt</code> 是一个包含要安装的软件包列表的文件</p><p>执行 <code>pip install -r requirements.txt</code> 进行安装</p><p> <img src="/2024/05/12/19-53-23/image-20240512203836135.png" alt="image-20240512203836135"></p><p>这一步需要非常非常非常长的时间</p><h4 id="4、下载模型"><a href="#4、下载模型" class="headerlink" title="4、下载模型"></a>4、下载模型</h4><p>执行 <code>huggingface-cli download --resume-download --local-dir-use-symlinks False Qwen/Qwen1.5-0.5B-Chat --local-dir model_dir/Qwen1.5-0.5B-Chat</code> 下载模型到 <code>qwen-ov</code> 下的 <code>model_dir</code> 文件夹下</p><p>这一步也需要非常非常非常长的时间</p><h4 id="5、转换模型"><a href="#5、转换模型" class="headerlink" title="5、转换模型"></a>5、转换模型</h4><p>止步于此，参数有问题，搜索引擎没抢救成功</p><p><img src="/2024/05/12/19-53-23/image-20240512201147707.png" alt="image-20240512201147707"></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;这是操作系统上机的 LLM 部署的报告总结部分（）&lt;/p&gt;
-&lt;h2 id=&quot;一、部署通义千问-1-5-0-5B-Chat-GGUF&quot;&gt;&lt;a href=&quot;#一、部署通义千问-1-5-0-5B-Chat-GGUF&quot; class=&quot;headerlink&quot; title=&quot;一、部署通义千问 1.5-0.5B-Chat-GGUF&quot;&gt;&lt;/a&gt;一、部署通义千问 1.5-0.5B-Chat-GGUF&lt;/h2&gt;&lt;h4 id=&quot;1、使用-modelscope-下载模型文件&quot;&gt;&lt;a href=&quot;#1、使用-modelscope-下载模型文件&quot; class=&quot;headerlink&quot; title=&quot;1、使用 modelscope 下载模型文件&quot;&gt;&lt;/a&gt;1、使用 &lt;code&gt;modelscope&lt;/code&gt; 下载模型文件&lt;/h4&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; modelscope.hub.file_download &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; model_file_download&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;model_dir = model_file_download(model_id=&lt;span class=&quot;string&quot;&gt;&amp;#x27;qwen/Qwen1.5-0.5B-Chat-GGUF&amp;#x27;&lt;/span&gt;,file_path=&lt;span class=&quot;string&quot;&gt;&amp;#x27;qwen1_5-0_5b-chat-q5_k_m.gguf&amp;#x27;&lt;/span&gt;,revision=&lt;span class=&quot;string&quot;&gt;&amp;#x27;master&amp;#x27;&lt;/span&gt;,cache_dir=&lt;span class=&quot;string&quot;&gt;&amp;#x27;path/to/local/dir&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    <category term="学习指南" scheme="https://houyi2333.github.io/categories/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/"/>
-    
-    
-  </entry>
   
   <entry>
     <title>常见随机变量的分布及其数字特征</title>
@@ -196,28 +176,6 @@
     
     
     <category term="前端开发" scheme="https://houyi2333.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>1_什么是线性、什么是线性代数</title>
-    <link href="https://houyi2333.github.io/2024/01/09/14-54-42/"/>
-    <id>https://houyi2333.github.io/2024/01/09/14-54-42/</id>
-    <published>2024-01-09T06:54:42.000Z</published>
-    <updated>2024-03-10T10:56:51.145Z</updated>
-    
-    <content type="html"><![CDATA[<p>线性代数作为大学里最重要的数学基础课之一，是大批学生的噩梦。相较而言，高数虽然内容繁杂，各种奇技淫巧频频出现，但由于高中课程中对导数等概念和相应工具的启蒙，且涉及微积分基本思想的数学故事也不少，加上近年来不少民科对微积分的攻击也帮助了一些简单微积分知识的普及，因而理工科的高数类课程反而不会让人觉得难以理解。</p><p>线性代数则不然，它往往让不少人从翻开书的第一页起一直懵逼到期末，讲的都是些什么玩意儿？ 最后迫不得已，一夜刷尽往年卷，匆匆应对期末考，从此相见不相识。</p><p>总的来说，教材的大致思路是先以某种方式定义矩阵，然后引入行列式，立马就开始计算。先对矩阵各种算——左乘右乘左右乘、求逆求秩求幂方，接着就开始了迷之特征值和向量空间，还有相似对角和相合，画风相当凌乱，根本不知道线性代数到底是什么，反正就是求和算。</p><p>这门课我也上完一年多了，最近也用到了很多线代中的知识，越发体会到这门课的重要性，于是准备把他重新捡起来，一边学一边讲解自己对线代的理解。</p><span id="more"></span><hr><p><strong>_以下是正文：_</strong></p><p>这是《线性代数》这一章的第一篇文档，本篇不会讲线代的具体内容，仅会对线性代数进行一个介绍</p><p>什么是线性？我们考虑这样一个初中问题</p><script type="math/tex; mode=display">求方程组\left\{ \begin{array}{l}    2x-y=0\\    -x+2y=3\\\end{array} \right.的解</script><p>我们先抛开代数消元不谈，从几何上我们可以这么理解这个问题</p><script type="math/tex; mode=display">求直线2x-y=0和直线-x+2y=3的交点的坐标</script><p><img src="/2024/01/09/14-54-42/image-20240109150913411.png" alt="image-20240109150913411"></p><p>显然交点的坐标为$(1,2)$，所以方程组的解为$x=1, y=2$</p><p>那么我们还知道，这个方程组叫做线性方程组，为什么呢？因为这个方程组的所有方程都是线性方程。什么是线性方程呢？我们把形如$a_1x_1+a_2x_2+\cdots+a_nx_n=b$的方程叫做线性方程，因为他表示了 n 维空间内的一个……，我也不知道，我只知道二元一次方程就表示了二维平面内的一条直线，三元一次方程就表示了三维空间内的一个平面。反正我无法想象三维以上的空间。</p><p>线性方程组是由一个或多个包含相同变量的未知数的线性方程组成的，其一般形式为：</p><script type="math/tex; mode=display">\left\{ \begin{array}{l}    a_{11}x_1+a_{12}x_2+\cdots +a_{1n}x_n=b_1\\    a_{21}x_1+a_{22}x_2+\cdots +a_{2n}x_n=b_2\\    \vdots\\    a_{m1}x_1+a_{m2}x_2+\cdots +a_{mn}x_n=b_m\\\end{array} \right.</script><p>这是 m 个 n 元一次方程，表示了 n 维空间内的一个……，嗯，就是那个……</p><p>现在我们再回到上面那个初中问题，如果把这个方程组竖着看会怎么样</p><script type="math/tex; mode=display">已知\vec{a}=\left( 2,-1 \right) ，\vec{b}=\left( -1,2 \right) ，\vec{c}=\left( 0,3 \right)，求实数x、y，使得x\vec{a}+y\vec{b}=\vec{c}</script><p>它变成了一个平面二维向量的组合问题，对$\vec{a}$和$\vec{b}$进行一个线性组合，使其能够得到$\vec{c}$。什么是线性组合？它的定义是这样的</p><script type="math/tex; mode=display">对于若干个n维向量：\vec{a_1}, \vec{a_2}, \cdots, \vec{a_m}\\对每个向量都乘上一个系数后相加：k_1\vec{a_1}+k_2\vec{a_2}+\cdots+\vec{a_m}k_m=\vec{b}\\我们称\vec{b}是这若干个n维向量的一个线性组合，也叫做线性表示</script><p>对于上面的初中问题，让 x 取 1，y 取 2 就可以成功组合出来$(0, 3)$这个向量</p><p>现在我们思考另一个问题，所有的线性组合是什么？这种问题在这门课中会频繁出现。选取所有的 x 和 y，所有的组合，结果是你会得到任意的二维向量，也就是对这两个向量进行不同的线性组合可以得到所有平面向量，这是我们高中学过的平面向量基本定理。这种线性组合的思想，是线性代数这门课的基础</p><p>接下来我们考虑三个方程三个未知数的方程组</p><script type="math/tex; mode=display">求方程组\left\{ \begin{array}{l}    2x-y=0\\    -x+2y-z=-1\\    -3y+4z=4\\\end{array} \right.的解</script><p>我们先把这个方程横着看，这是三维空间中的三个平面相交，求交点的坐标</p><p>如果把这个方程竖着看，那就是三维空间的三个向量的线性组合，使其能够组合出来等号右边的向量</p><p>现在我们思考另一个问题，所有的线性组合是什么？这是我们高中学过的空间向量基本定理，对于三个不共面的三维向量，其线性组合可以覆盖到整个三维空间。如果有两个向量位于同一个平面，那这两个向量中的一个将对向量组毫无贡献，这样的线性组合就只能覆盖到一个二维平面</p><p>那大家是否能想象出来四维空间中 4 个向量的组合，n 维空间中 n 个向量的组合？显然，我们想象不出来。但在学完线性代数这门课以后，我们就会意识到，这 n 个向量有机会覆盖到整个 n 维空间。这很难直观的想象出来，我们也可以说这是某种平面。如果这 n 个向量中有两个向量是“共面”的，那么这 n 个向量就只能覆盖到 n 维空间中的某 n-1 维平面，最后的求解也只能在这 n-1 维平面上展开</p><p>线性代数是数学的一个分支，它的研究对象是向量，向量空间（或称线性空间），线性变换和有限维的线性方程组。这些概念和方法在数学、物理学、工程学、计算机等领域中都有广泛的应用。例如，在数学中，线性代数被广泛地应用于抽象代数和泛函分析中；在计算机领域中，线性代数被广泛地应用于计算机图形学、密码学、计算机视觉等方面</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;线性代数作为大学里最重要的数学基础课之一，是大批学生的噩梦。相较而言，高数虽然内容繁杂，各种奇技淫巧频频出现，但由于高中课程中对导数等概念和相应工具的启蒙，且涉及微积分基本思想的数学故事也不少，加上近年来不少民科对微积分的攻击也帮助了一些简单微积分知识的普及，因而理工科的高数类课程反而不会让人觉得难以理解。&lt;/p&gt;
-&lt;p&gt;线性代数则不然，它往往让不少人从翻开书的第一页起一直懵逼到期末，讲的都是些什么玩意儿？ 最后迫不得已，一夜刷尽往年卷，匆匆应对期末考，从此相见不相识。&lt;/p&gt;
-&lt;p&gt;总的来说，教材的大致思路是先以某种方式定义矩阵，然后引入行列式，立马就开始计算。先对矩阵各种算——左乘右乘左右乘、求逆求秩求幂方，接着就开始了迷之特征值和向量空间，还有相似对角和相合，画风相当凌乱，根本不知道线性代数到底是什么，反正就是求和算。&lt;/p&gt;
-&lt;p&gt;这门课我也上完一年多了，最近也用到了很多线代中的知识，越发体会到这门课的重要性，于是准备把他重新捡起来，一边学一边讲解自己对线代的理解。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="线性代数" scheme="https://houyi2333.github.io/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
     
     
   </entry>
